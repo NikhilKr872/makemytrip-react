@@ -5,6 +5,7 @@ import Footer from "./Components/Footer";
 import Main from "./Components/Main";
 import Offer from "./Components/Offer";
 import Slides from "./Components/Slides";
+import TravelDest from "./Components/TravelDest";
 
 class App extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class App extends React.Component {
         </div>
         
         <Offer />
+        <TravelDest />
         <Slides />
         <Footer />
       </div>

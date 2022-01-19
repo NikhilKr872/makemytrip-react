@@ -69,138 +69,134 @@ export default class SearchFlight extends Component {
   };
 
   render() {
-      let data=""
-      if(this.state.recieved){
-          data=this.state.travelRoutes.map((ele) => {
-            if (
-              ele.fromAirport === this.state.from &&
-              ele.toAirport === this.state.to
-            ) {
-              return (
-                <div
-                  className="d-flex flex-column shadow"
-                  style={{ gap: "20px", borderRadius: "5px" }}
-                  key={ele.id}
-                >
-                  <div
-                    className="d-flex flex-row justify-content-between align-items-center p-3  flex-wrap"
-                    key={ele.id}
-                  >
-                    <div style={{ width: "80px", height: "50px" }}>
-                      <img
-                        src={this.icons[ele.carrier - 1]}
-                        className="img-fluid"
-                        alt="Carrier"
-                      />
-                    </div>
-                    <div
-                      className="d-flex flex-row justify-content-between align-items-center"
-                      style={{ gap: "30px" }}
-                    >
-                      <div>
-                        <div className="text-muted">From</div>
-                        <span>{ele.fromAirport_name}</span>
-                      </div>
-                      <div>
-                        <div className="text-muted">To</div>
-                        <span>{ele.toAirport_name}</span>
-                      </div>
-                    </div>
-                    <div>
-                      <button className="searchflight-btn">
-                        View Details
-                      </button>
-                    </div>
-                  </div>
-                  <div
-                    className="w-75 text-dark mx-auto text-center offer-search-flight"
-                    style={{ fontSize: "13px" }}
-                  >
-                    Use code MMTSUPER and get FLAT Rs. 260 instant discount on
-                    this flight
-                  </div>
-                  <div
-                    className="text-primary p-1 pointer"
-                    style={{ fontSize: "15px", textAlign: "right" }}
-                    onClick={this.toggleDetails}
-                    id={ele.id}
-                  >
-                    {this.state.details[ele.id] ? "Hide" : "View"} Flight
-                    Details
-                  </div>
-                  {this.state.details[ele.id] ? (
-                    <div
-                      className="d-flex flex-column p-3 m-2"
-                      style={{
-                        border: "1px solid lightgrey",
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <div>
-                        <h6>
-                          {ele.fromAirport_name + "  "}
-                          <span>to</span>
-                          {"  " + ele.toAirport_name}
-                        </h6>
-                      </div>
-                      <figure
-                        className="d-flex flex-row align-items-center"
-                        style={{ gap: "10px" }}
-                      >
-                        <img
-                          src={this.icons[ele.carrier - 1]}
-                          alt="Flight Details"
-                          style={{ width: "80px", height: "50px" }}
-                        />
-                        <figcaption>
-                          {ele.carrier_name}
-                          <span className="text-muted">
-                            {" " + ele.plane_name}
-                          </span>
-                        </figcaption>
-                      </figure>
-                      <div className="d-flex flex-row justify-content-between">
-                        <div
-                          className="d-flex flex-row"
-                          style={{ gap: "10px" }}
-                        >
-                          <div className="d-flex flex-column align-items-center">
-                            <span className="text-muted">From</span>
-                            <span>{ele.fromAirport_name}</span>
-                            <span>{ele.fromAirport_airport}</span>
-                          </div>
-                          <div className="d-flex flex-column align-items-center">
-                            <span className="text-muted">To</span>
-                            <span>{ele.toAirport_name}</span>
-                            <span>{ele.toAirport_airport}</span>
-                          </div>
-                        </div>
-                        <div
-                          className="d-flex flex-row flex-wrap"
-                          style={{ gap: "20px" }}
-                        >
-                          <div className="text-center">
-                            <h5>BAGGAGE:</h5>
-                            <span>ADULT</span>
-                          </div>
-                          <div className="text-center">
-                            <h5>CHECK IN</h5>
-                            <span>15 Kgs (1 piece only)</span>
-                          </div>
-                          <div className="text-center">
-                            <h5>CABIN</h5>
-                            <span>7 Kgs (1 piece only)</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ) : undefined}
+    let data = "";
+    if (this.state.recieved) {
+      data = this.state.travelRoutes.map((ele) => {
+        if (
+          ele.fromAirport === this.state.from &&
+          ele.toAirport === this.state.to
+        ) {
+          return (
+            <div
+              className="d-flex flex-column shadow"
+              style={{ gap: "20px", borderRadius: "5px" }}
+              key={ele.id}
+            >
+              <div
+                className="d-flex flex-row justify-content-between align-items-center p-3  flex-wrap"
+                key={ele.id}
+              >
+                <div style={{ width: "80px", height: "50px" }}>
+                  <img
+                    src={this.icons[ele.carrier - 1]}
+                    className="img-fluid"
+                    alt="Carrier"
+                  />
                 </div>
-              );
-            }
-            return undefined;
-          })
-      }
+                <div
+                  className="d-flex flex-row justify-content-between align-items-center"
+                  style={{ gap: "30px" }}
+                >
+                  <div>
+                    <div className="text-muted">From</div>
+                    <span>{ele.fromAirport_name}</span>
+                  </div>
+                  <div>
+                    <div className="text-muted">To</div>
+                    <span>{ele.toAirport_name}</span>
+                  </div>
+                </div>
+                <div>
+                  <button className="searchflight-btn">View Details</button>
+                </div>
+              </div>
+              <div
+                className="w-75 text-dark mx-auto text-center offer-search-flight"
+                style={{ fontSize: "13px" }}
+              >
+                Use code MMTSUPER and get FLAT Rs. 260 instant discount on this
+                flight
+              </div>
+              <div
+                className="text-primary p-1"
+                style={{ fontSize: "15px", textAlign: "right" }}
+              >
+                <span
+                  className="pointer"
+                  id={ele.id}
+                  onClick={this.toggleDetails}
+                >
+                  {this.state.details[ele.id] ? "Hide" : "View"} Flight Details
+                </span>
+              </div>
+              {this.state.details[ele.id] ? (
+                <div
+                  className="d-flex flex-column p-3 m-2"
+                  style={{
+                    border: "1px solid lightgrey",
+                    backgroundColor: "white",
+                  }}
+                >
+                  <div>
+                    <h6>
+                      {ele.fromAirport_name + "  "}
+                      <span>to</span>
+                      {"  " + ele.toAirport_name}
+                    </h6>
+                  </div>
+                  <figure
+                    className="d-flex flex-row align-items-center"
+                    style={{ gap: "10px" }}
+                  >
+                    <img
+                      src={this.icons[ele.carrier - 1]}
+                      alt="Flight Details"
+                      style={{ width: "80px", height: "50px" }}
+                    />
+                    <figcaption>
+                      {ele.carrier_name}
+                      <span className="text-muted">{" " + ele.plane_name}</span>
+                    </figcaption>
+                  </figure>
+                  <div className="d-flex flex-row justify-content-between">
+                    <div className="d-flex flex-row" style={{ gap: "10px" }}>
+                      <div className="d-flex flex-column align-items-center">
+                        <span className="text-muted">From</span>
+                        <span>{ele.fromAirport_name}</span>
+                        <span>{ele.fromAirport_airport}</span>
+                      </div>
+                      <div className="d-flex flex-column align-items-center">
+                        <span className="text-muted">To</span>
+                        <span>{ele.toAirport_name}</span>
+                        <span>{ele.toAirport_airport}</span>
+                      </div>
+                    </div>
+                    <div
+                      className="d-flex flex-row flex-wrap"
+                      style={{ gap: "20px" }}
+                    >
+                      <div className="text-center">
+                        <h5>BAGGAGE:</h5>
+                        <span>ADULT</span>
+                      </div>
+                      <div className="text-center">
+                        <h5>CHECK IN</h5>
+                        <span>15 Kgs (1 piece only)</span>
+                      </div>
+                      <div className="text-center">
+                        <h5>CABIN</h5>
+                        <span>7 Kgs (1 piece only)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : undefined}
+            </div>
+          );
+        }
+        return undefined;
+      });
+    }
     return (
       <>
         <Header />
@@ -210,8 +206,11 @@ export default class SearchFlight extends Component {
             style={{ gap: "20px" }}
           >
             {data}
-            {data.every((ele)=>ele===undefined)?<div className="text-center">Sorry, No flights for this route</div>:undefined}
-            
+            {data.every((ele) => ele === undefined) ? (
+              <div className="text-center">
+                Sorry, No flights for this route
+              </div>
+            ) : undefined}
           </div>
         ) : (
           <Loader />
