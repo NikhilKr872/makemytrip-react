@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
+import { CgArrowsExchange } from "react-icons/cg";
 
 export default class Main extends Component {
   constructor(props) {
@@ -14,6 +15,8 @@ export default class Main extends Component {
       Airports: [],
       recieved: false,
     };
+    this.fromRef = React.createRef();
+    this.toRef = React.createRef();
   }
 
   componentDidMount = () => {
@@ -53,8 +56,8 @@ export default class Main extends Component {
 
   onChangeFunc = (e) => {
     const data = this.state.Airports.find((ele) => ele.name === e.target.value);
-    if(!data){
-        return
+    if (!data) {
+      return;
     }
     this.setState({
       [e.target.name]: data.id,
@@ -66,7 +69,21 @@ export default class Main extends Component {
     this.setState({ search: !toggle });
   };
 
- 
+  onClickExchangeFunc = () => {
+    let tempFrom = this.fromRef.current.value;
+    let tempTo = this.toRef.current.value;
+    this.fromRef.current.value = null;
+    this.toRef.current.value = null;
+    this.toRef.current.value = tempFrom;
+    this.fromRef.current.value = tempTo;
+    tempFrom = this.state.from;
+    tempTo = this.state.to;
+    this.setState({
+      from: tempTo,
+      to: tempFrom,
+    });
+  };
+
   render() {
     const date = new Date();
     const today =
@@ -101,6 +118,7 @@ export default class Main extends Component {
                 defaultValue="New Delhi"
                 name="from"
                 onChange={this.onChangeFunc}
+                ref={this.fromRef}
               />
               <datalist id="from">
                 {this.state.Airports.map((ele) => {
@@ -108,6 +126,11 @@ export default class Main extends Component {
                 })}
               </datalist>
             </label>
+            <CgArrowsExchange
+              size={30}
+              onClick={this.onClickExchangeFunc}
+              className="pointer"
+            />
             <label className="form-control" style={{ width: "200px" }}>
               To
               <input
@@ -116,6 +139,7 @@ export default class Main extends Component {
                 defaultValue="Mumbai"
                 name="to"
                 onChange={this.onChangeFunc}
+                ref={this.toRef}
               />
               <datalist id="ide">
                 {this.state.Airports.map((ele) => {
@@ -170,13 +194,13 @@ export default class Main extends Component {
                     </label>
                 </div> */}
 
-          <Link className="text-center" to={`/flight/${this.state.from}/${this.state.to}`}>
-            <button className="btn btn-primary" >
-              Submit
-            </button>
+          <Link
+            className="text-center"
+            to={`/flight/${this.state.from}/${this.state.to}`}
+          >
+            <button className="btn btn-primary">Submit</button>
           </Link>
         </div>
-        
       </div>
     ) : (
       <Loader />
