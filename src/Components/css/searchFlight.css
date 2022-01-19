@@ -1,0 +1,19 @@
+.searchflight-btn{
+    width: fit-content;
+    border-radius: 20px;
+    border:none;
+    background-color: #daebff;
+    color:#008CFF;
+    padding:7px;
+    
+}
+
+.offer-search-flight{
+    background-color: #ffedd1;
+}
+
+.allflights{
+    margin-top:20px;
+    margin-bottom:20px;
+    background-color: white;
+}

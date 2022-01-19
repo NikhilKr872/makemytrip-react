@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Air India"
+    },
+    {
+        "id": 2,
+        "name": "IndiGo"
+    },
+    {
+        "id": 3,
+        "name": "Spice Jet"
+    },
+    {
+        "id": 4,
+        "name": "AirAsia India"
+    },
+    {
+        "id": 5,
+        "name": "Go First"
+    }
+]

@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "name": "Airbus 380",
+        "numbersOfSeats": 50
+    },
+    {
+        "id": 2,
+        "name": "BOEING 737-300",
+        "numbersOfSeats": 149
+    },
+    {
+        "id": 3,
+        "name": "Airbus a320",
+        "numbersOfSeats": 180
+    },
+    {
+        "id": 4,
+        "name": "Embraer ERJ-190",
+        "numbersOfSeats": 100
+    },
+    {
+        "id": 5,
+        "name": "ATR 72",
+        "numbersOfSeats": 74
+    }
+
+]

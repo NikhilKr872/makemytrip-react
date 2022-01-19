@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "plane": 1,
+        "carrier": 1,
+        "fromAirport": 1,
+        "toAirport": 2
+    },
+    {
+        "id": 2,
+        "plane": 3,
+        "carrier": 4,
+        "fromAirport": 3,
+        "toAirport": 20
+    },
+    {
+        "id": 3,
+        "plane": 2,
+        "carrier": 5,
+        "fromAirport": 15,
+        "toAirport": 12
+    },
+    {
+        "id": 4,
+        "plane": 5,
+        "carrier": 5,
+        "fromAirport": 18,
+        "toAirport": 10
+    },
+    {
+        "id": 5,
+        "plane": 2,
+        "carrier": 1,
+        "fromAirport": 17,
+        "toAirport": 9
+    },
+    {
+        "id": 6,
+        "plane": 4,
+        "carrier": 2,
+        "fromAirport": 3,
+        "toAirport": 16
+    },
+    {
+        "id": 7,
+        "plane": 1,
+        "carrier": 3,
+        "fromAirport": 1,
+        "toAirport": 2
+    },
+    {
+        "id": 8,
+        "plane": 2,
+        "carrier": 4,
+        "fromAirport": 2,
+        "toAirport": 14
+    },
+    {
+        "id": 9,
+        "plane": 4,
+        "carrier": 5,
+        "fromAirport": 9,
+        "toAirport": 18
+    },
+    {
+        "id": 10,
+        "plane": 3,
+        "carrier": 4,
+        "fromAirport": 5,
+        "toAirport": 13
+    }
+]

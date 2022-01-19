@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "name": "New Delhi",
+        "airport": "Indira Gandhi International Airport",
+        "code": "DEL"
+    },
+    {
+        "id": 2,
+        "name": "Mumbai",
+        "airport": "Chhatrapati Shivaji Maharaj International Airport",
+        "code": "BOM"
+    },
+    {
+        "id": 3,
+        "name": "Bengaluru",
+        "airport": "Kempegowda International Airport",
+        "code": "BLR"
+    },
+    {
+        "id": 4,
+        "name": "Hyderabad",
+        "airport": "Rajiv Gandhi International Airport",
+        "code": "HYD"
+    },
+    {
+        "id": 5,
+        "name": "Kolkata",
+        "airport": "Netaji Subhas Chandra Bose International Airport",
+        "code": "CCU"
+    },
+    {
+        "id": 6,
+        "name": "Chennai",
+        "airport": "Chennai International Airport",
+        "code": "MAA"
+    },
+    {
+        "id": 7,
+        "name": "Ahmedabad",
+        "airport": "Sardar Vallabhbhai Patel International Airport",
+        "code": "AMD"
+    },
+    {
+        "id": 8,
+        "name": "Dabolim",
+        "airport": "Dabolim International Airport",
+        "code": "GOI"
+    },
+    {
+        "id": 9,
+        "name": "Patna",
+        "airport": "Jay Prakash Narayan Airport",
+        "code": "PAT"
+    },
+    {
+        "id": 10,
+        "name": "Kochi",
+        "airport": "Cochin International Airport",
+        "code": "COK"
+    },
+    {
+        "id": 11,
+        "name": "Lucknow",
+        "airport": "Chaudhary Charan Singh International Airport",
+        "code": "LKO"
+    },
+    {
+        "id": 12,
+        "name": "Guwahati",
+        "airport": "Lokpriya Gopinath Bordoloi International Airport",
+        "code": "GAU"
+    },
+    {
+        "id": 13,
+        "name": "Pune",
+        "airport": "Pune Airport",
+        "code": "PNQ"
+    },
+    {
+        "id": 14,
+        "name": "Jaipur",
+        "airport": "Jaipur International Airport",
+        "code": "JAI"
+    },
+    {
+        "id": 15,
+        "name": "Srinagar",
+        "airport": "Sheikh ul-Alam International Airport",
+        "code": "SXR"
+    },
+    {
+        "id": 16,
+        "name": "Bhubaneswar",
+        "airport": "Biju Patnaik International Airport",
+        "code": "BBI"
+    },
+    {
+        "id": 17,
+        "name": "Siliguri",
+        "airport": "Bagdogra International Airport",
+        "code": "IXB"
+    },
+    {
+        "id": 18,
+        "name": "Varanasi",
+        "airport": "Lal Bahadur Shastri International Airport",
+        "code": "VNS"
+    },
+    {
+        "id": 19,
+        "name": "Chandigarh",
+        "airport": "Chandigarh International Airport",
+        "code": "IXC"
+    },
+    {
+        "id": 20,
+        "name": "Ranchi",
+        "airport": "Birsa Munda Airport",
+        "code": "IXR"
+    }
+]
