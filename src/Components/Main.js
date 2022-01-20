@@ -159,7 +159,7 @@ export default class Main extends Component {
             </label>
             <label className="form-control" style={{ width: "200px" }}>
               RETURN
-              <input type="date" name="departure" className="form-control" />
+              <input type="date" name="departure" className="form-control" min={today}/>
             </label>
             <label className="form-control" style={{ width: "200px" }}>
               CLASS
@@ -194,12 +194,14 @@ export default class Main extends Component {
                     </label>
                 </div> */}
 
+          <div className="text-center">
           <Link
             className="text-center"
             to={`/flight/${this.state.from}/${this.state.to}`}
           >
             <button className="btn btn-primary">Submit</button>
           </Link>
+          </div>
         </div>
       </div>
     ) : (

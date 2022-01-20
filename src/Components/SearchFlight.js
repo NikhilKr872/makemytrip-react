@@ -15,12 +15,15 @@ export default class SearchFlight extends Component {
   constructor(props) {
     super(props);
     this.icons = [AirIndia, Indigo, SpiceJet, AirAsia, GoFirst];
+    this.prices = ["₹7,999", "₹6,599", "₹7,499", "₹8,999", "₹6,999"];
     this.state = {
       travelRoutes: [],
       recieved: false,
       from: "",
       to: "",
       details: {},
+      priceDetails:{}
+
     };
   }
 
@@ -63,10 +66,22 @@ export default class SearchFlight extends Component {
 
   toggleDetails = (e) => {
     const detail = this.state.details[e.target.id];
+    const tempPriceObj=this.state.priceDetails;
+    tempPriceObj[e.target.id]=false;
     const tempObj = this.state.details;
     tempObj[e.target.id] = !detail;
-    this.setState({ details: { ...tempObj } });
+    this.setState({ details: { ...tempObj },priceDetails:{...tempPriceObj} });
   };
+
+  togglePriceDetails=(e)=>{
+    
+    const pDetail=this.state.priceDetails[e.target.name]
+    const tempPriceObj=this.state.priceDetails;
+    tempPriceObj[e.target.name]=!pDetail;
+    const tempObj = this.state.details;
+    tempObj[e.target.name] = false;
+    this.setState({ details: { ...tempObj },priceDetails:{...tempPriceObj} });
+  }
 
   render() {
     let data = "";
@@ -106,8 +121,12 @@ export default class SearchFlight extends Component {
                     <span>{ele.toAirport_name}</span>
                   </div>
                 </div>
-                <div>
-                  <button className="searchflight-btn">View Details</button>
+                <div
+                  className="d-flex flex-row align-items-center justify-content-center"
+                  style={{ gap: "10px" }}
+                >
+                  <h4>{this.prices[ele.carrier - 1]}</h4>
+                  <button className="searchflight-btn" name={ele.id} onClick={this.togglePriceDetails}>{!this.state.priceDetails[ele.id]?"View":"Hide"} Prices</button>
                 </div>
               </div>
               <div
@@ -191,6 +210,48 @@ export default class SearchFlight extends Component {
                   </div>
                 </div>
               ) : undefined}
+              {this.state.priceDetails[ele.id]?<div className="d-flex flex-row justify-content-between p-1 m-1" style={{border:"1px solid lightgrey",backgroundColor:"white"}}>
+                <div>
+                  <h5>Fares</h5>
+                  <div>
+                    <h6> Economy Saver</h6>
+                    <span>Fare offered by airline.</span>
+                  </div>
+                </div>
+                <div>
+                  <h5>Cabin Bag</h5>
+                  <div>
+                    <span>7 Kgs</span>
+                  </div>
+                </div>
+                <div>
+                  <h5>Check In</h5>
+                  <div>
+                    <span>25 Kgs</span>
+                  </div>
+                </div>
+                <div>
+                  <h5>Cancellation</h5>
+                  <div>
+                    <span>Cancellation Fee starting ₹ 3,500</span>
+                  </div>
+                </div>
+                <div>
+                  <h5>Date Change</h5>
+                  <div>
+                    <span>Date Change Fee starting ₹ 3,000</span>
+                  </div>
+                </div>
+                <div>
+                  
+                  <div className="d-flex flex-column">
+                    <span>{this.prices[ele.carrier-1]}</span>
+                    <button className="searchflight-btn">Book Now</button>
+                  </div>
+                </div>
+              </div>
+              :undefined
+              }
             </div>
           );
         }

@@ -2,9 +2,24 @@ import React, { Component } from 'react'
 import mmtqcode from './images/mmtqrcode.webp'
 import appstore from './images/appstore.webp'
 import googlestore from './images/googlestore.webp'
+import  "./css/offer.css"
+
 
 
 export default class Offer extends Component {
+
+
+    constructor(props){
+        super(props)
+        this.inputField=React.createRef()
+    }
+
+
+    onClickFunc=()=>{
+        this.inputField.current.value=""
+    }
+
+
     render() {
         return (
             <div className='d-flex flex-column w-75 mx-auto bg-light rounded p-4 shadow-sm flex-wrap'>
@@ -16,8 +31,8 @@ export default class Offer extends Component {
                     <div>
                         <p>Use code WELCOMEMMT and get upto Rs 1200 off on your first domestic flight booking</p>
                         <div className='d-flex flex-row flex-wrap' style={{gap:"10px",height:"40px"}}>
-                            <input type="text" className='form-control' placeholder='Enter Mobile number'/>
-                            <button className='btn btn-secondary p-0' style={{width:"180px"}}>GET APP LINK</button>
+                            <input type="text" className='form-control mobile-number-input' placeholder='Enter Mobile number' ref={this.inputField} maxLength={10}/>
+                            <button className='btn btn-secondary p-0' style={{width:"180px"}} onClick={this.onClickFunc}>GET APP LINK</button>
                         </div>
                     </div>
                     <div className='d-flex flex-column' style={{gap:"10px"}}>
