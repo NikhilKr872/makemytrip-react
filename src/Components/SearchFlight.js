@@ -10,6 +10,7 @@ import "./css/searchFlight.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import Offer from "./Offer";
+import { Link } from "react-router-dom";
 
 export default class SearchFlight extends Component {
   constructor(props) {
@@ -22,8 +23,14 @@ export default class SearchFlight extends Component {
       from: "",
       to: "",
       details: {},
-      priceDetails:{}
-
+      priceDetails: {},
+      filter:{
+        "Air India":true,
+        "Indigo":true,
+        "Spice Jet":true,
+        "AirAsia India":true,
+        "Go First":true
+      }
     };
   }
 
@@ -66,21 +73,35 @@ export default class SearchFlight extends Component {
 
   toggleDetails = (e) => {
     const detail = this.state.details[e.target.id];
-    const tempPriceObj=this.state.priceDetails;
-    tempPriceObj[e.target.id]=false;
+    const tempPriceObj = this.state.priceDetails;
+    tempPriceObj[e.target.id] = false;
     const tempObj = this.state.details;
     tempObj[e.target.id] = !detail;
-    this.setState({ details: { ...tempObj },priceDetails:{...tempPriceObj} });
+    this.setState({
+      details: { ...tempObj },
+      priceDetails: { ...tempPriceObj },
+    });
   };
 
-  togglePriceDetails=(e)=>{
-    
-    const pDetail=this.state.priceDetails[e.target.name]
-    const tempPriceObj=this.state.priceDetails;
-    tempPriceObj[e.target.name]=!pDetail;
+  togglePriceDetails = (e) => {
+    const pDetail = this.state.priceDetails[e.target.name];
+    const tempPriceObj = this.state.priceDetails;
+    tempPriceObj[e.target.name] = !pDetail;
     const tempObj = this.state.details;
     tempObj[e.target.name] = false;
-    this.setState({ details: { ...tempObj },priceDetails:{...tempPriceObj} });
+    this.setState({
+      details: { ...tempObj },
+      priceDetails: { ...tempPriceObj },
+    });
+  };
+
+  filterByAirline=(e)=>{
+    const tempObj=this.state.filter
+    const check=this.state.filter[e.target.value]
+    tempObj[e.target.value]=!check
+    this.setState({filter:{...tempObj}})
+    
+  
   }
 
   render() {
@@ -89,7 +110,7 @@ export default class SearchFlight extends Component {
       data = this.state.travelRoutes.map((ele) => {
         if (
           ele.fromAirport === this.state.from &&
-          ele.toAirport === this.state.to
+          ele.toAirport === this.state.to && this.state.filter[ele.carrier_name]
         ) {
           return (
             <div
@@ -126,7 +147,13 @@ export default class SearchFlight extends Component {
                   style={{ gap: "10px" }}
                 >
                   <h4>{this.prices[ele.carrier - 1]}</h4>
-                  <button className="searchflight-btn" name={ele.id} onClick={this.togglePriceDetails}>{!this.state.priceDetails[ele.id]?"View":"Hide"} Prices</button>
+                  <button
+                    className="searchflight-btn"
+                    name={ele.id}
+                    onClick={this.togglePriceDetails}
+                  >
+                    {!this.state.priceDetails[ele.id] ? "View" : "Hide"} Prices
+                  </button>
                 </div>
               </div>
               <div
@@ -210,48 +237,53 @@ export default class SearchFlight extends Component {
                   </div>
                 </div>
               ) : undefined}
-              {this.state.priceDetails[ele.id]?<div className="d-flex flex-row justify-content-between p-1 m-1" style={{border:"1px solid lightgrey",backgroundColor:"white"}}>
-                <div>
-                  <h5>Fares</h5>
+              {this.state.priceDetails[ele.id] ? (
+                <div
+                  className="d-flex flex-row justify-content-between p-1 m-1"
+                  style={{
+                    border: "1px solid lightgrey",
+                    backgroundColor: "white",
+                  }}
+                >
                   <div>
-                    <h6> Economy Saver</h6>
-                    <span>Fare offered by airline.</span>
+                    <h5>Fares</h5>
+                    <div>
+                      <h6> Economy Saver</h6>
+                      <span>Fare offered by airline.</span>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <h5>Cabin Bag</h5>
                   <div>
-                    <span>7 Kgs</span>
+                    <h5>Cabin Bag</h5>
+                    <div>
+                      <span>7 Kgs</span>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <h5>Check In</h5>
                   <div>
-                    <span>25 Kgs</span>
+                    <h5>Check In</h5>
+                    <div>
+                      <span>25 Kgs</span>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <h5>Cancellation</h5>
                   <div>
-                    <span>Cancellation Fee starting ₹ 3,500</span>
+                    <h5>Cancellation</h5>
+                    <div>
+                      <span>Cancellation Fee starting ₹ 3,500</span>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <h5>Date Change</h5>
                   <div>
-                    <span>Date Change Fee starting ₹ 3,000</span>
+                    <h5>Date Change</h5>
+                    <div>
+                      <span>Date Change Fee starting ₹ 3,000</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="d-flex flex-column">
+                      <span>{this.prices[ele.carrier - 1]}</span>
+                      <Link to={`/flight/${this.state.from}/${this.state.to}/${ele.id}/booking`}><button className="searchflight-btn">Book Now</button></Link>
+                    </div>
                   </div>
                 </div>
-                <div>
-                  
-                  <div className="d-flex flex-column">
-                    <span>{this.prices[ele.carrier-1]}</span>
-                    <button className="searchflight-btn">Book Now</button>
-                  </div>
-                </div>
-              </div>
-              :undefined
-              }
+              ) : undefined}
             </div>
           );
         }
@@ -266,6 +298,38 @@ export default class SearchFlight extends Component {
             className="d-flex flex-column w-75 mx-auto bg-light allflights"
             style={{ gap: "20px" }}
           >
+            <div className=" d-flex flex-row p-1 bg-light" style={{gap:"10px"}}>
+              <div>
+                <label>
+                  <input type="checkbox" style={{marginRight:"5px"}} value="Air India" checked={this.state.filter["Air India"]} onChange={this.filterByAirline}/>
+                  Air India
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox"  style={{marginRight:"5px"}} value="Indigo" checked={this.state.filter["Indigo"]} onChange={this.filterByAirline}/>
+                  Indigo
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" style={{marginRight:"5px"}} value="Spice Jet" checked={this.state.filter["Spice Jet"]} onChange={this.filterByAirline}/>
+                  Spice Jet
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox"  style={{marginRight:"5px"}} value="AirAsia India" checked={this.state.filter["AirAsia India"]} onChange={this.filterByAirline}/>
+                  AirAsia India
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" style={{marginRight:"5px"}} value="Go First" checked={this.state.filter["Go First"]} onChange={this.filterByAirline}/>
+                  Go First
+                </label>
+              </div>
+            </div>
             {data}
             {data.every((ele) => ele === undefined) ? (
               <div className="text-center">

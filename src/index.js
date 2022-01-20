@@ -12,6 +12,7 @@ import Cab from "./Components/Cab";
 import Visa from "./Components/Visa";
 import Charter from "./Components/Charter";
 import Activity from "./Activity";
+import BookingPage from "./Components/BookingPage";
 import SearchFlight from "./Components/SearchFlight";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -31,6 +32,7 @@ ReactDOM.render(
         <Route path="/charter" element={<Charter />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/flight/:from/:to" element={<SearchFlight />}/>
+        <Route path="/flight/:from/:to/:id/booking" element={<BookingPage />}/>
        
       </Routes>
     </Router>
