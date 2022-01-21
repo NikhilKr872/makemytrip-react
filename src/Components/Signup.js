@@ -80,6 +80,7 @@ export default class Signup extends React.Component {
       const flag = this.clear();
       if (flag) {
         this.props.saveData({
+          name:this.state.name,
           email: this.state.email,
           pass: this.state.password,
         });

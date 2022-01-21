@@ -52,6 +52,13 @@ export default class Header extends Component {
 
   componentDidMount = () => {
     this.isSelected();
+    if (!window.localStorage["makemytrip"]) {
+      return;
+    }
+    this.setState({
+      userData: JSON.parse(window.localStorage["makemytrip"])[0],
+      LoggedIn: true,
+    });
   };
 
   isSelected = () => {
@@ -114,7 +121,7 @@ export default class Header extends Component {
           (ele) => ele.email === data.email && ele.pass === data.pass
         ),
       });
-      
+
       return [true, ""];
     } else {
       return [false, "Account not found"];
@@ -256,7 +263,9 @@ export default class Header extends Component {
               className="pointer signuphover"
             >
               {this.state.LoggedIn ? (
-                <div title={this.state.userData.email}>User</div>
+                <div title={this.state.userData.email}>
+                  {this.state.userData.name}
+                </div>
               ) : (
                 "Sign In"
               )}
