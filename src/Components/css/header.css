@@ -1,90 +1,84 @@
-.header-main{
-    background-color: white;
+.header-main {
+  background-color: white;
 }
 
-.mmt-icon{
-    
-    width: 150px;
+.mmt-icon {
+  width: 150px;
 }
 
-.icons{
-    gap:20px;
+.icons {
+  gap: 20px;
 }
 
-.myicon{
-    height: 40px;
-    width: 40px;
-    border-radius: 40px;
+.myicon {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
 }
 
-.header3{
-    gap:20px;
+.header3 {
+  gap: 20px;
 }
 
-.lang{
-    border:none;
-    height: 25px;
-    border-radius: 5px;
-    background-color: white;
+.lang {
+  border: none;
+  height: 25px;
+  border-radius: 5px;
+  background-color: white;
 }
 
-.lang:focus{
-    outline: none;
-    
+.lang:focus {
+  outline: none;
 }
 
-.pointer{
-    cursor: pointer;
+.pointer {
+  cursor: pointer;
 }
 
-.header-sec{
-    width:75%;
-   margin-left: auto;
-    margin-right: auto;
+.header-sec {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-black {
+  color: black;
+}
+
+.navbar {
+  gap: 10px;
+  width: 60%;
+}
+
+@media screen and (max-width: 500px) {
+  .header-sec {
+    margin: 0px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .navbar {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items:center;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
 
-.color-black{
-    color:black;
-}
-
-.navbar{
-    gap:10px;
-    width: 60%;
-}
-
-@media screen and (max-width:500px) {
-   
-    .header-sec{
-        margin:0px;
-        border:1px solid black;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        padding:10px;
-        flex-wrap: wrap;
-        gap:10px;
-    }
-
-    .navbar{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items:center;
-        
-        
-      
-    }
-    
-
-    
-    
-    
+.signuphover:hover{
+    text-decoration: underline;
+    color:blue
 }

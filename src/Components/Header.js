@@ -14,12 +14,39 @@ import mmtlogo from "./images/mmtlogo.jpg";
 import myicon from "./images/myicon.png";
 import "./css/header.css";
 import { Link } from "react-router-dom";
+import ReactModal from "react-modal/lib/components/Modal";
+import Signup from "./Signup";
+import SignIn from "./SignIn";
 
 export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selected: {},
+      toggleSignUp: false,
+      toggleLogin: false,
+      LoggedIn: false,
+      userData: "",
+    };
+    this.style = {
+      content: {
+        top: "55%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+      },
+    };
+    this.loginStyle = {
+      content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+      },
     };
   }
 
@@ -39,7 +66,63 @@ export default class Header extends Component {
     }
   };
 
+  toggleLoginFunc = () => {
+    const toggle = this.state.toggleLogin;
+    this.setState({ toggleLogin: !toggle });
+  };
+
+  showSignupFunc = () => {
+    this.setState({
+      toggleSignUp: true,
+      toggleLogin: false,
+    });
+  };
+
+  successfulSignUp = () => {
+    this.setState({
+      toggleSignUp: false,
+      toggleLogin: true,
+    });
+  };
+
+  closeLogin = () => {
+    this.setState({ toggleLogin: false, LoggedIn: true });
+  };
+
+  saveUserData = (data) => {
+    let tempData = window.localStorage["makemytrip"];
+    if (!tempData) {
+      tempData = [];
+    } else {
+      tempData = JSON.parse(tempData);
+    }
+
+    tempData.push(data);
+    window.localStorage["makemytrip"] = JSON.stringify(tempData);
+  };
+
+  clickOnLoginBtn = (data) => {
+    if (!window.localStorage["makemytrip"]) {
+      return [false, "Account not found"];
+    }
+    const find = JSON.parse(window.localStorage["makemytrip"]).some(
+      (ele) => ele.email === data.email && ele.pass === data.pass
+    );
+    if (find) {
+      this.setState({
+        userData: JSON.parse(window.localStorage["makemytrip"]).find(
+          (ele) => ele.email === data.email && ele.pass === data.pass
+        ),
+      });
+      
+      return [true, ""];
+    } else {
+      return [false, "Account not found"];
+    }
+  };
+
   render() {
+    console.log(this.state.userData);
     return (
       <div className="sticky-top header-main shadow-sm">
         <div className="header-sec">
@@ -167,10 +250,17 @@ export default class Header extends Component {
             </Link>
           </div>
           <div className="d-flex flex-row align-items-center justify-content-center header3 flex-wrap">
-            <div>
-              <img src={myicon} alt="my icon" className="img-fluid myicon" />
-            </div>
-
+            <img src={myicon} alt="my icon" className="img-fluid myicon" />
+            <span
+              onClick={this.toggleLoginFunc}
+              className="pointer signuphover"
+            >
+              {this.state.LoggedIn ? (
+                <div title={this.state.userData.email}>User</div>
+              ) : (
+                "Sign In"
+              )}
+            </span>
             <select defaultValue="India | Eng | INR" className="lang">
               <option>India | Eng | INR</option>
               <option>UAE | Arb | AED</option>
@@ -178,6 +268,27 @@ export default class Header extends Component {
             </select>
           </div>
         </div>
+        <ReactModal
+          style={this.style}
+          isOpen={this.state.toggleSignUp}
+          ariaHideApp={false}
+        >
+          <Signup
+            toggleModal={this.successfulSignUp}
+            saveData={this.saveUserData}
+          />
+        </ReactModal>
+        <ReactModal
+          style={this.loginStyle}
+          isOpen={this.state.toggleLogin}
+          ariaHideApp={false}
+        >
+          <SignIn
+            onClick={this.showSignupFunc}
+            onLoginBtnClick={this.clickOnLoginBtn}
+            hideLogin={this.closeLogin}
+          />
+        </ReactModal>
       </div>
     );
   }

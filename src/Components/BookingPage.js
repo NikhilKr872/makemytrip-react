@@ -10,6 +10,7 @@ import Indigo from "./images/indigoicon.png";
 import SpiceJet from "./images/spicejeticon.webp";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import validator from "validator";
+import SeatBooking from "./SeatBooking";
 
 export default class BookingPage extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ export default class BookingPage extends Component {
       email: "",
       age: "",
       entered: false,
+      activeSeats: Array(50).fill(false),
     };
     this.prices = ["₹7,999", "₹6,599", "₹7,499", "₹8,999", "₹6,999"];
     this.icons = [AirIndia, Indigo, SpiceJet, AirAsia, GoFirst];
@@ -42,6 +44,31 @@ export default class BookingPage extends Component {
 
   componentDidMount = () => {
     this.runOnMount();
+  };
+
+  onClickSeatFunc = (e) => {
+    const any = this.state.activeSeats.some((ele) => ele);
+    const indexAny = this.state.activeSeats.indexOf(any);
+    console.log(indexAny);
+    console.log(this.state.activeSeats);
+    if (indexAny === Number(e.target.id)) {
+      let index = e.target.id;
+      let tempArr = this.state.activeSeats;
+      tempArr[index] = !tempArr[index];
+      this.setState({
+        activeSeats: tempArr,
+      });
+    }
+    if (any) {
+      return;
+    }
+
+    let index = e.target.id;
+    let tempArr = this.state.activeSeats;
+    tempArr[index] = !tempArr[index];
+    this.setState({
+      activeSeats: tempArr,
+    });
   };
 
   //   toggleTravellerDetailsFunc=(e)=>{
@@ -167,7 +194,7 @@ export default class BookingPage extends Component {
       checkgender: false,
       entered: false,
     }));
-    if(e.target.type==='radio'){
+    if (e.target.type === "radio") {
       return;
     }
     let val;
@@ -334,9 +361,11 @@ export default class BookingPage extends Component {
               </ul>
             </div>
             <div>
-              <div className="w-100 bg-light m-2 shadow-sm p-2">
+              <div className="w-100 bg-light m-2 shadow-sm p-2 d-flex flex-row">
                 {/* {this.state.travellerDetails.map((ele)=>ele)}
                     <button onClick={this.addAdultFunc}>Add Adult</button> */}
+
+                <SeatBooking />
                 <form
                   className="form-control d-flex flex-column w-25 mx-auto"
                   style={{ gap: "10px" }}

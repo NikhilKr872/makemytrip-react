@@ -2,28 +2,85 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Div {
+  
+  
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 400px;
+  
+  flex-wrap: wrap;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.formheading {
+  font-weight: 500;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.group {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.submitbtn {
+  background-color: #9090ff;
+  width: 100%;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  color: #ffff;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.submitbtn:hover {
+  box-shadow: 1px 0px 10px #7777cb;
+}
+.iconparent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.signinicon {
+  border-radius: 10px;
+  height: 40px;
+  width: 40px;
+  box-shadow: 1px 0px 9px lightgray;
+}
+
+.formlabel {
+  align-self: flex-start;
+  font-size: 15px;
+  color: grey;
+}
+
+.checkboxgroup {
+  margin-right: auto;
+
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.AlreadyAccount {
+  margin-top: 10px;
+  color: grey;
+}
+
+.joinus {
+  
+  color: grey;
+}
+
+.formApp{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
 }
