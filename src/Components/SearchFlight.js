@@ -12,6 +12,7 @@ import Footer from "./Footer";
 import Offer from "./Offer";
 import { Link } from "react-router-dom";
 
+
 export default class SearchFlight extends Component {
   constructor(props) {
     super(props);
@@ -106,6 +107,22 @@ export default class SearchFlight extends Component {
 
   render() {
     let data = "";
+    let count_Carrier=this.state.travelRoutes.reduce((acc,curr)=>{
+      if(this.state.from===curr.fromAirport && this.state.to===curr.toAirport){
+        if(!acc[curr.carrier_name]){
+          acc[curr.carrier_name]=1
+        }
+        else{
+          acc[curr.carrier_name]+=1
+        }
+        
+      }
+      return acc;
+      
+    },{})
+    
+    
+    
     if (this.state.recieved) {
       data = this.state.travelRoutes.map((ele) => {
         if (
@@ -294,48 +311,53 @@ export default class SearchFlight extends Component {
       <>
         <Header />
         {this.state.recieved ? (
-          <div
-            className="d-flex flex-column w-75 mx-auto bg-light allflights"
-            style={{ gap: "20px" }}
-          >
-            <div className=" d-flex flex-row p-1 bg-light" style={{gap:"10px"}}>
+          <div className="d-flex flex-row w-75 mx-auto" style={{gap:"10px"}}>
+            <div className=" d-flex flex-column p-3 shadow-sm rounded carrierfilter" style={{gap:"10px"}}>
+              <h5>Filters:-</h5>
+              <span>Carrier:-</span>
               <div>
                 <label>
                   <input type="checkbox" style={{marginRight:"5px"}} value="Air India" checked={this.state.filter["Air India"]} onChange={this.filterByAirline}/>
-                  Air India
+                  Air India ({!count_Carrier['Air India']?0:count_Carrier['Air India']})
                 </label>
               </div>
               <div>
                 <label>
                   <input type="checkbox"  style={{marginRight:"5px"}} value="Indigo" checked={this.state.filter["Indigo"]} onChange={this.filterByAirline}/>
-                  Indigo
+                  Indigo ({!count_Carrier['Indigo']?0:count_Carrier['Indigo']})
                 </label>
               </div>
               <div>
                 <label>
                   <input type="checkbox" style={{marginRight:"5px"}} value="Spice Jet" checked={this.state.filter["Spice Jet"]} onChange={this.filterByAirline}/>
-                  Spice Jet
+                  Spice Jet ({!count_Carrier['Spice Jet']?0:count_Carrier['Spice Jet']})
                 </label>
               </div>
               <div>
                 <label>
                   <input type="checkbox"  style={{marginRight:"5px"}} value="AirAsia India" checked={this.state.filter["AirAsia India"]} onChange={this.filterByAirline}/>
-                  AirAsia India
+                  AirAsia India ({!count_Carrier['AirAsia India']?0:count_Carrier['AirAsia India']})
                 </label>
               </div>
               <div>
                 <label>
                   <input type="checkbox" style={{marginRight:"5px"}} value="Go First" checked={this.state.filter["Go First"]} onChange={this.filterByAirline}/>
-                  Go First
+                  Go First ({!count_Carrier['Go First']?0:count_Carrier['Go First']})
                 </label>
               </div>
             </div>
+          <div
+            className="d-flex flex-column bg-light allflights "
+            style={{ gap: "20px" }}
+          >
+            
             {data}
             {data.every((ele) => ele === undefined) ? (
               <div className="text-center">
                 Sorry, No flights for this route
               </div>
             ) : undefined}
+          </div>
           </div>
         ) : (
           <Loader />

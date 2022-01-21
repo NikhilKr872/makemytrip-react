@@ -17,4 +17,13 @@
     margin-top:20px;
     margin-bottom:20px;
     background-color: white;
+    margin-left:auto;
+    width: 80%;
+}
+
+.carrierfilter{
+    width:20%;
+    background-color: white;
+    margin-top:20px;
+    margin-bottom:20px;
 }

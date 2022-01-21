@@ -4,18 +4,9 @@ import Footer from "./Footer";
 import Offer from "./Offer";
 
 export default class Cab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      AirportTransfers: false,
-    };
-  }
+  
 
-  toggleTransfer = () => {
-    const check = this.state.AirportTransfers;
-    this.setState({ AirportTransfers: !check });
-  };
-
+  
   render() {
     return (
       <div className="d-flex flex-column" style={{ gap: "20px" }}>
@@ -24,18 +15,8 @@ export default class Cab extends Component {
           className="w-75 mx-auto d-flex flex-column bg-light rounded p-3 shadow-sm"
           style={{ gap: "10px" }}
         >
-          <div className="d-flex flex-row " style={{ gap: "10px" }}>
-            <label>
-              <input
-                type="checkbox"
-                name="typeOfTravel"
-                className="m-1"
-                onChange={this.toggleTransfer}
-              />
-              AIRPORT TRANSFERS
-            </label>
-          </div>
-          {!this.state.AirportTransfers ? (
+          
+         
             <div
               className="d-flex flex-row justify-content-start align-items-center"
               style={{ gap: "10px" }}
@@ -67,9 +48,7 @@ export default class Cab extends Component {
                 </select>
               </label>
             </div>
-          ) : (
-            <div></div>
-          )}
+          
 
           <div className="text-center">
             <button className="btn btn-primary">Submit</button>

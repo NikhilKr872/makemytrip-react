@@ -99,13 +99,6 @@ export default class Main extends Component {
           className="w-75 mx-auto d-flex flex-column bg-light rounded p-3 shadow-sm"
           style={{ gap: "10px" }}
         >
-          {/* <div className='d-flex flex-row ' style={{ gap: "10px" }}>
-
-                    <label>
-                        <input type="checkbox" className='m-1' />
-                        MULTI CITY
-                    </label>
-                </div> */}
           <div
             className="d-flex flex-row justify-content-center align-items-center flex-wrap"
             style={{ gap: "10px" }}
@@ -159,7 +152,12 @@ export default class Main extends Component {
             </label>
             <label className="form-control" style={{ width: "200px" }}>
               RETURN
-              <input type="date" name="departure" className="form-control" min={today}/>
+              <input
+                type="date"
+                name="departure"
+                className="form-control"
+                min={today}
+              />
             </label>
             <label className="form-control" style={{ width: "200px" }}>
               CLASS
@@ -170,37 +168,14 @@ export default class Main extends Component {
               </select>
             </label>
           </div>
-          {/* <div className='d-flex flex-row justify-content-start align-items-center' style={{ gap: "10px" }}>
-                    <span>Fare type:-</span>
-                    <label>
-                        <input type="radio" name="fare" className='m-1' />
-                        Regular Fares
-                    </label>
-                    <label>
-                        <input type="radio" name="fare" className='m-1' />
-                        Armed Forces Fares
-                    </label>
-                    <label>
-                        <input type="radio" name="fare" className='m-1' />
-                        Student Fares
-                    </label>
-                    <label>
-                        <input type="radio" name="fare" className='m-1' />
-                        Senior Citizen Fares
-                    </label>
-                    <label>
-                        <input type="radio" name="fare" className='m-1' />
-                        Double Seat Fares
-                    </label>
-                </div> */}
 
           <div className="text-center">
-          <Link
-            className="text-center"
-            to={`/flight/${this.state.from}/${this.state.to}`}
-          >
-            <button className="btn btn-primary">Submit</button>
-          </Link>
+            <Link
+              className="text-center"
+              to={`/flight/${this.state.from}/${this.state.to}`}
+            >
+              <button className="btn btn-primary">Submit</button>
+            </Link>
           </div>
         </div>
       </div>

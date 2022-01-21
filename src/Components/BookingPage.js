@@ -167,6 +167,9 @@ export default class BookingPage extends Component {
       checkgender: false,
       entered: false,
     }));
+    if(e.target.type==='radio'){
+      return;
+    }
     let val;
 
     val = e.target.value;
@@ -381,6 +384,7 @@ export default class BookingPage extends Component {
                         type="radio"
                         className="m-1"
                         ref={this.male}
+                        onChange={this.onChangeFunc}
                       />
                       Male
                     </label>
@@ -390,6 +394,7 @@ export default class BookingPage extends Component {
                         type="radio"
                         className="m-1"
                         ref={this.female}
+                        onChange={this.onChangeFunc}
                       />
                       Female
                     </label>
