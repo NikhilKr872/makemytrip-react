@@ -6,11 +6,12 @@ export default class SeatBooking extends Component {
     super(props);
     this.state = {
       numberofSeats: 50,
-      activeSeats: Array(50).fill(false),
+      activeSeats: Array(this.props.numOfSeats).fill(false),
     };
   }
 
   onClickFunc = (e) => {
+    
     const any = this.state.activeSeats.filter((ele) => ele);
 
     if (
@@ -29,6 +30,7 @@ export default class SeatBooking extends Component {
   };
 
   render() {
+   
     return (
       <div className="parentNumberofSeats">
         {this.state.activeSeats.map((ele, index) => {

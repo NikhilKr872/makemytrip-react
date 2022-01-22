@@ -129,7 +129,7 @@ export default class Header extends Component {
   };
 
   render() {
-    console.log(this.state.userData);
+    
     return (
       <div className="sticky-top header-main shadow-sm">
         <div className="header-sec">

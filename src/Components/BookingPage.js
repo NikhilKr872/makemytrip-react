@@ -10,7 +10,7 @@ import Indigo from "./images/indigoicon.png";
 import SpiceJet from "./images/spicejeticon.webp";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import validator from "validator";
-import SeatBooking from "./SeatBooking";
+import "./css/seatbook.css";
 
 export default class BookingPage extends Component {
   constructor(props) {
@@ -31,7 +31,8 @@ export default class BookingPage extends Component {
       email: "",
       age: "",
       entered: false,
-      activeSeats: Array(50).fill(false),
+      activeSeats: '',
+      checkBook:false
     };
     this.prices = ["₹7,999", "₹6,599", "₹7,499", "₹8,999", "₹6,999"];
     this.icons = [AirIndia, Indigo, SpiceJet, AirAsia, GoFirst];
@@ -47,28 +48,21 @@ export default class BookingPage extends Component {
   };
 
   onClickSeatFunc = (e) => {
-    const any = this.state.activeSeats.some((ele) => ele);
-    const indexAny = this.state.activeSeats.indexOf(any);
-    console.log(indexAny);
-    console.log(this.state.activeSeats);
-    if (indexAny === Number(e.target.id)) {
-      let index = e.target.id;
+    const any = this.state.activeSeats.filter((ele) => ele);
+
+    if (
+      (any.length === 1 && this.state.activeSeats[e.target.id]) ||
+      any.length === 0
+    ) {
+      let index = Number(e.target.id);
       let tempArr = this.state.activeSeats;
       tempArr[index] = !tempArr[index];
       this.setState({
         activeSeats: tempArr,
       });
-    }
-    if (any) {
+    } else {
       return;
     }
-
-    let index = e.target.id;
-    let tempArr = this.state.activeSeats;
-    tempArr[index] = !tempArr[index];
-    this.setState({
-      activeSeats: tempArr,
-    });
   };
 
   //   toggleTravellerDetailsFunc=(e)=>{
@@ -135,6 +129,7 @@ export default class BookingPage extends Component {
       })
       .then((data) => {
         let path = window.location.pathname.split("/");
+       
 
         this.setState({
           travelRoutes: data["results"],
@@ -142,6 +137,7 @@ export default class BookingPage extends Component {
           from: Number(path[2]),
           to: Number(path[3]),
           routeId: Number(path[4]),
+          activeSeats:Array(data["results"].find((ele)=>ele.id===Number(path[4])).plane_numberOfSeats).fill(false)
         });
       })
       .catch((err) => {
@@ -151,6 +147,7 @@ export default class BookingPage extends Component {
 
   onClickFunc = (e) => {
     e.preventDefault();
+    const boolBook=!this.state.activeSeats.some((ele)=>ele)
 
     const boolname =
       !this.state.name ||
@@ -170,9 +167,10 @@ export default class BookingPage extends Component {
       checkage: boolage,
       checkemail: boolemail,
       checkgender: boolgender,
+      checkBook:boolBook
     });
 
-    if (boolage || boolname || boolemail || boolgender) {
+    if (boolage || boolname || boolemail || boolgender || boolBook) {
       return;
     }
     this.name.current.value = "";
@@ -180,6 +178,7 @@ export default class BookingPage extends Component {
     this.age.current.value = "";
     this.male.current.checked = false;
     this.female.current.checked = false;
+    this.setState({activeSeats:Array(this.state.travelRoutes[this.state.routeId].plane_numberOfSeats).fill(false)})
     this.setState({
       entered: true,
     });
@@ -193,6 +192,7 @@ export default class BookingPage extends Component {
       checkemail: false,
       checkgender: false,
       entered: false,
+      checkBook:false
     }));
     if (e.target.type === "radio") {
       return;
@@ -365,9 +365,27 @@ export default class BookingPage extends Component {
                 {/* {this.state.travellerDetails.map((ele)=>ele)}
                     <button onClick={this.addAdultFunc}>Add Adult</button> */}
 
-                <SeatBooking />
+                {/* <SeatBooking numOfSeats={route.plane_numberOfSeats}/> */}
+                <div className="parentNumberofSeats">
+                  {this.state.activeSeats.map((ele, index) => {
+                    return (
+                      <button
+                        id={index}
+                        className={
+                          this.state.activeSeats[index]
+                            ? "individualbutton booked"
+                            : "individualbutton"
+                        }
+                        key={index + 1}
+                        onClick={this.onClickSeatFunc}
+                      >
+                        {index + 1}
+                      </button>
+                    );
+                  })}
+                </div>
                 <form
-                  className="form-control d-flex flex-column w-25 mx-auto"
+                  className="form-control d-flex flex-column w-25 mx-auto justify-content-center"
                   style={{ gap: "10px" }}
                 >
                   {this.state.entered && (
@@ -375,6 +393,7 @@ export default class BookingPage extends Component {
                       Flight Booked Successfully
                     </div>
                   )}
+                  {this.state.checkBook && (<div className="text-center" style={{color:"red"}}>Please Select a Seat</div>)}
 
                   <h5>Traveller Details</h5>
                   <input
